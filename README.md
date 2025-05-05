@@ -1,10 +1,10 @@
-# 📁 SplitMerge.sh
+# 📁 safe-split-merge.sh
 
 **Split and merge large files safely with integrity checks (MD5)**
 
 ## 🧩 Overview
 
-`SplitMerge.sh` is a Bash utility that allows you to **split a large file into smaller chunks** and later **merge them back with integrity verification**. This is especially useful in environments with **unstable or slow internet connections**, where uploading or transferring large files in a single go is prone to failure.
+`safe-split-merge.sh` is a Bash utility that allows you to **split a large file into smaller chunks** and later **merge them back with integrity verification**. This is especially useful in environments with **unstable or slow internet connections**, where uploading or transferring large files in a single go is prone to failure.
 
 By splitting files, you can manually upload smaller parts to your destination and then merge them back reliably. The script uses **MD5 checksums** to verify that the merged file is exactly the same as the original.
 
@@ -24,7 +24,7 @@ By splitting files, you can manually upload smaller parts to your destination an
 ### 🧩 Split a Large File
 
 ```bash
-./SplitMerge.sh split <source_file> <chunk_size_MB> <output_dir>
+./safe-split-merge.sh split <source_file> <chunk_size_MB> <output_dir>
 ```
 
 **Arguments:**
@@ -36,7 +36,7 @@ By splitting files, you can manually upload smaller parts to your destination an
 **Example:**
 
 ```bash
-./SplitMerge.sh split myvideo.mp4 100 split_parts
+./safe-split-merge.sh split myvideo.mp4 100 split_parts
 ```
 
 Creates `split_parts/part_0000`, `part_0001`, ..., and `original.md5`.
@@ -46,7 +46,7 @@ Creates `split_parts/part_0000`, `part_0001`, ..., and `original.md5`.
 ### 🔗 Merge Chunks Back
 
 ```bash
-./SplitMerge.sh merge <input_dir> <merged_file>
+./safe-split-merge.sh merge <input_dir> <merged_file>
 ```
 
 **Arguments:**
@@ -57,7 +57,7 @@ Creates `split_parts/part_0000`, `part_0001`, ..., and `original.md5`.
 **Example:**
 
 ```bash
-./SplitMerge.sh merge split_parts myvideo_reconstructed.mp4
+./safe-split-merge.sh merge split_parts myvideo_reconstructed.mp4
 ```
 
 Merges all `part_*` files in `split_parts` and verifies against `original.md5`.
